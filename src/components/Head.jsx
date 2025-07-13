@@ -1,12 +1,20 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { toggleMenu } from '../utils/appSlice';
 
 const Head = () => {
+    const dispatch = useDispatch()
+
+    const hamBurgerToggel = () => {
+        dispatch(toggleMenu())
+    }
     return (
         <div className="flex items-center justify-between px-4 py-2 shadow-md">
             {/* Left Section - Logo and Menu */}
             <div className="flex items-center gap-4">
                 <img
-                    className="h-6 w-6"
+                    onClick={() => hamBurgerToggel()}
+                    className="h-6 w-6 cursor-pointer"
                     alt="menu"
                     src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
                 />
