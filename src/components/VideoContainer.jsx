@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { POPULAR_VIDEO_KEY } from '../utils/constants';
 import VideoCard from './VideoCard';
+import { Link } from 'react-router-dom';
 
 const VideoContainer = () => {
     const [videos, setVideos] = useState([])
@@ -19,7 +20,11 @@ const VideoContainer = () => {
 
     return (
         <div className='flex flex-wrap justify-center gap-6 p-5'>
-            {videos.map(video => <VideoCard key={video.id} info={video} />)}
+            {videos.map(video =>
+                <Link to={'/watch?v=' + video.id}>
+                    <VideoCard key={video.id} info={video} />
+                </Link>
+            )}
         </div>
     )
 }
