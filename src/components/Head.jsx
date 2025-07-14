@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
+import { Link } from 'react-router-dom';
 
 const Head = () => {
     const dispatch = useDispatch()
@@ -18,11 +19,13 @@ const Head = () => {
                     alt="menu"
                     src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
                 />
-                <img
-                    className="h-6"
-                    alt="youtube-logo"
-                    src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg"
-                />
+                <Link to={'/'}>
+                    <img
+                        className="h-6 cursor-pointer"
+                        alt="youtube-logo "
+                        src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg"
+                    />
+                </Link>
             </div>
 
             {/* Middle Section - Search */}
