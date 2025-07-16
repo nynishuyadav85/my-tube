@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
 import { Link } from 'react-router-dom';
+import { YOUTUBE_SEARCH_KEY } from '../utils/constants';
 
 const Head = () => {
     const dispatch = useDispatch()
+    const [searchQuery, setSearchQuery] = useState('');
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => searchSuggestion(), 200)
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [searchQuery])
+
+    const searchSuggestion = async () => {
+        const data = await fetch(YOUTUBE_SEARCH_KEY + searchQuery)
+        const res = await data.json();
+        console.log(res[1])
+    }
 
     const hamBurgerToggel = () => {
         dispatch(toggleMenu())
@@ -34,6 +51,8 @@ const Head = () => {
                     type="text"
                     className="flex-grow px-4 py-1 border border-gray-300 rounded-l-full outline-none"
                     placeholder="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <button className="px-4 py-1 border border-gray-300 border-l-0 rounded-r-full bg-gray-100">
                     Search
