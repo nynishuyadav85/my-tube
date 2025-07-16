@@ -1,5 +1,4 @@
 const VideoCard = ({ info }) => {
-    console.log(info)
 
     const { snippet, statistics } = info;
     const { thumbnails, title, channelTitle, publishedAt } = snippet;
