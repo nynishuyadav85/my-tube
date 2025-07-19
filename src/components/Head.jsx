@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
 import { Link } from 'react-router-dom';
 import { YOUTUBE_SEARCH_KEY } from '../utils/constants';
+import { cacheResult } from '../utils/searchSlice';
 
 const Head = () => {
     const dispatch = useDispatch()
@@ -11,9 +12,18 @@ const Head = () => {
     const [serchData, setSearchData] = useState([]);
     const [hover, setHover] = useState(false)
 
+    const searchCache = useSelector((store) => store.search)
+
 
     useEffect(() => {
-        const timer = setTimeout(() => searchSuggestion(), 200)
+        const timer = setTimeout(() => {
+            if (searchCache[searchQuery]) {
+                setSearchData(searchCache[searchQuery])
+            } else {
+                searchSuggestion()
+            }
+
+        }, 200)
 
         return () => {
             clearTimeout(timer)
@@ -24,6 +34,9 @@ const Head = () => {
         const data = await fetch(YOUTUBE_SEARCH_KEY + searchQuery)
         const res = await data.json();
         setSearchData(res[1])
+        dispatch(cacheResult({
+            [searchQuery]: res[1]
+        }))
     }
 
     const hamBurgerToggel = () => {
