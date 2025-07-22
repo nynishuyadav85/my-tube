@@ -5,7 +5,6 @@ import { useSearchParams } from "react-router-dom"
 
 const WatchPage = () => {
     const videoTitle = useSelector((store) => store.videoTitle.title)
-    const channelTitle = useSelector((store) => store.channelTitle.channelTitle)
     const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
 
@@ -34,7 +33,7 @@ const WatchPage = () => {
                 {/* Channel Info + Subscribe */}
                 <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
                     <div className="flex items-center gap-4">
-                        <div className="text-lg font-bold">{channelTitle}</div>
+                        <div className="text-lg font-bold">{"Nishu"}</div>
                         <div className="text-sm text-gray-500">569K subscribers</div>
                     </div>
                     <button className="bg-red-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-red-700 transition">
