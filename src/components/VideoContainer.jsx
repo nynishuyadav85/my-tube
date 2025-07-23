@@ -16,7 +16,6 @@ const VideoContainer = () => {
     const getVideos = async () => {
         const res = await fetch(POPULAR_VIDEO_KEY);
         const data = await res.json();
-        console.log(data.items[0])
         setVideos(data.items)
     }
 
