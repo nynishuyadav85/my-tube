@@ -3,7 +3,7 @@ import { POPULAR_VIDEO_KEY } from '../utils/constants';
 import VideoCard, { AdVideoCard } from './VideoCard';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { videoChannelName, videoTitle } from '../utils/videoSlice';
+import { videoTitle } from '../utils/videoSlice';
 
 const VideoContainer = () => {
     const dispatch = useDispatch()
