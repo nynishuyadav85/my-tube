@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { closeMenu } from "../utils/appSlice"
 import { useSearchParams } from "react-router-dom"
 import CommentsContainer from "./CommentsContainer"
+import LiveChat from "./LiveChat"
 
 const WatchPage = () => {
     const videoTitle = useSelector((store) => store.videoTitle.title)
@@ -16,6 +17,7 @@ const WatchPage = () => {
     return (
         <div className="flex flex-col">
             <div className="px-5">
+                <div className="flex mt-2">
                 <iframe
                     height={500}
                     width={1000}
@@ -25,6 +27,10 @@ const WatchPage = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                 ></iframe>
+                <div>
+                    <LiveChat />
+                </div>
+                </div>
 
                 <div className="mt-4">
                     {/* Video Title */}
